@@ -1,0 +1,34 @@
+# figure out N% discount (100 30 dis -> 70)
+discount 100 / 2 pick * -
+
+# reverse of discount
+markup 100 / 1.0 swap - / 
+
+# convert to megabytes
+meg 1024 1024 * * 
+
+# convert to kilobytes
+k 1024 *
+
+# value-of-the-word-containing-this-set-bit
+bit 1 swap << 
+
+# set the bit on the stack into the word preceding it
+set bit |
+
+# opposite of "set"
+unset bit ~ &
+
+# produce the word with a bit set for every position on 
+# the stack
+$cbit swap set 
+bits bit depth -- repeat $cbit
+
+# > 15 fill -> 15 14 13 12 etc
+$-step dup --
+fill dup repeat $-step
+
+# produce all the valid IP header lengths
+$ihlstep dup 4 * swap --
+$ihls dup repeat $ihlstep
+ihls 15 $ihls
