@@ -249,31 +249,31 @@ cmd_depth(void)
 
 static void
 cmd_ntohs(void) {
-	unsigned short s = (unsigned short) popnum();	
+	unsigned short s = (unsigned short) popnum();
 	pushnum(ntohs(s));
 }
 
 static void
 cmd_htons(void) {
-	unsigned short s = (unsigned short) popnum();	
+	unsigned short s = (unsigned short) popnum();
 	pushnum(htons(s));
 }
 
 static void
 cmd_ntohl(void) {
-	unsigned s = (unsigned) popnum();	
+	unsigned s = (unsigned) popnum();
 	pushnum(ntohl(s));
 }
 
 static void
 cmd_htonl(void) {
-	unsigned s = (unsigned) popnum();	
+	unsigned s = (unsigned) popnum();
 	pushnum(htonl(s));
 }
 
 static void
 cmd_stack(void) {
-	stackmode = stackmode ? 0 : 1 ;	
+	stackmode = stackmode ? 0 : 1 ;
 }
 
 static void
@@ -728,7 +728,7 @@ static struct command _commands[] = {
 	{ "sin",	1,	cmd_sin		},
 	{ "sinh",	1,	cmd_sinh	},
 	{ "sqrt",	1,	cmd_sqrt	},
-	{ "stack",	0,      cmd_stack	},	
+	{ "stack",	0,      cmd_stack	},
 	{ "swap",	2,	cmd_swap	},
 	{ "tanh",	1,	cmd_tanh	},
 	{ "version",	0,	cmd_version	},
@@ -782,7 +782,7 @@ cmdcmp(const void *cmd, const void *cmdptr)
 }
 
 
-static void 
+static void
 cmdrefresh(void) {
 	qsort(commands, numcmds, sizeof *commands, cmdcmp);
 }
@@ -796,8 +796,8 @@ addcommand(struct command *c) {
 			free(commands);
 
 		commands = ca;
-		roomcmds = numcmds;	
-	} 
+		roomcmds = numcmds;
+	}
 
 	commands[numcmds] = *c;
 	numcmds++;
@@ -808,8 +808,8 @@ addcommand(struct command *c) {
 struct command *
 findcmd(char *cmd)
 {
-	struct command c; 
-	c.name = cmd;	       
+	struct command c;
+	c.name = cmd;
 	thiscmd = cmd;
 
 	return bsearch(&c, commands, numcmds, sizeof *commands, cmdcmp);
